@@ -1,0 +1,39 @@
+1. 下载
+    https://sourceforge.net/projects/cppunit/
+    从这里选择一个版本的cppunit下载，目前的版本是1.12.1
+
+2. 解压，进入解压后的目录
+3. 编译安装
+    ./configure LDFLAGS='-ldl'
+    make
+    make install
+
+4. CppUnit 提供的验证成功失败的方式有：
+
+       CPPUNIT_ASSERT(condition)                              
+	// 确信condition为真
+       CPPUNIT_ASSERT_MESSAGE(message, condition)   
+	// 当condition为假时失败, 并打印message
+       CPPUNIT_FAIL(message)                                    
+	// 当前测试失败, 并打印message
+       CPPUNIT_ASSERT_EQUAL(expected, actual)            
+	// 确信两者相等
+       CPPUNIT_ASSERT_EQUAL_MESSAGE(message, expected, actual)      
+	// 失败的同时打印message
+       CPPUNIT_ASSERT_DOUBLES_EQUAL(expected, actual, delta)      
+	// 当expected和actual之间差大于delta时失败
+
+
+Q&A:
+1. make时报错，dlopen未定义
+    /usr/local/lib/libcppunit.so: undefined reference to `dlsym'
+    /usr/local/lib/libcppunit.so: undefined reference to `dlopen'
+    /usr/local/lib/libcppunit.so: undefined reference to `dlclose'
+    
+    解决方法：
+    在编译cppunit 时 加入  LDFLAGS='-ldl'
+
+2. 执行测试时，./ttt: error while loading shared libraries: libcppunit-1.12.so.1: cannot open shared object file: No such file or directory
+
+    解决方法：
+    指定so所在路径，export LD_LIBRARY_PATH=/usr/local/lib/
