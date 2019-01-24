@@ -19,6 +19,8 @@
 	huangyang@huangyang-desktop:/usr/local/include$ ls
 	gmock  gtest
 
+1.2 lcov安装
+    sudo apt-get install lcov
 
 
 2. 环境配置
